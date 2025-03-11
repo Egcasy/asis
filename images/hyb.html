@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teacher Profiles</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>Teacher Profiles</h1>
+    <nav>
+        <a href="#" onclick="toggleDarkMode()">🌙 Dark Mode</a>
+        <input type="text" id="searchInput" placeholder="Search teachers...">
+    </nav>
+</header>
+
+<main>
+    <section id="filter">
+        <label for="subjectFilter">Filter by Subject:</label>
+        <select id="subjectFilter" onchange="filterTeachers()">
+            <option value="">All Subjects</option>
+            <option>Mathematics</option>
+            <option>Science</option>
+            <option>History</option>
+            <option>English</option>
+            <option>Art</option>
+            <option>Geography</option>
+            <option>Physics</option>
+            <option>Chemistry</option>
+            <option>Biology</option>
+            <option>Computer Science</option>
+        </select>
+    </section>
+
+    <div id="teacher-container">
+        <!-- Teachers will be dynamically loaded here -->
+    </div>
+</main>
+
+<!-- Modal for Detailed View -->
+<div id="modal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modal-photo" src="" alt="Teacher Photo">
+        <p id="modal-name"></p>
+        <p><strong>Subject:</strong> <span id="modal-subject"></span></p>
+        <p><strong>Phone:</strong> <span id="modal-phone"></span></p>
+    </div>
+</div>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Header and Navigation */
+header {
+    background-color: #6200ea;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+header input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Filter Dropdown */
+#filter {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#filter select {
+    padding: 10px;
+    margin-left: 15px;
+}
+
+/* Teacher Cards */
+.teacher-card {
+    background: #fff;
+    padding: 15px 20px;
+    margin: 15px;
+    width: 250px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+    overflow: hidden;
+    cursor: pointer;
+    transform-origin: center;
+}
+
+.teacher-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+/* Images */
+.teacher-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    width: 300px;
+    margin: 10% auto;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.modal-content img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode header {
+    background-color: #333;
+}
+</style>
+<script>
+const teachers = [
+    { name: "Alice Johnson", phone: "123-456-7890", subject: "Mathematics", photo: "images/alice.jpg" },
+    { name: "Bob Smith", phone: "234-567-8901", subject: "Science", photo: "images/bob.jpg" },
+    { name: "Charlie Brown", phone: "345-678-9012", subject: "History", photo: "images/charlie.jpg" },
+    { name: "David Harris", phone: "456-789-0123", subject: "English", photo: "images/david.jpg" },
+    { name: "Ella White", phone: "567-890-1234", subject: "Art", photo: "images/ella.jpg" }
+];
+
+function renderTeachers(data) {
+    const container = document.getElementById("teacher-container");
+    container.innerHTML = "";
+    data.forEach(teacher => {
+        const card = document.createElement("div");
+        card.className = "teacher-card";
+        card.innerHTML = `
+            <img src="${teacher.photo}" alt="${teacher.name}">
+            <h3>${teacher.name}</h3>
+            <p><strong>Subject:</strong> ${teacher.subject}</p>
+            <p><strong>Phone:</strong> <a href="tel:${teacher.phone}">${teacher.phone}</a></p>
+        `;
+        card.onclick = () => openModal(teacher);
+        container.appendChild(card);
+    });
+}
+
+function filterTeachers() {
+    const subject = document.getElementById("subjectFilter").value;
+    if (subject) {
+        const filteredTeachers = teachers.filter(t => t.subject === subject);
+        renderTeachers(filteredTeachers);
+    } else {
+        renderTeachers(teachers);
+    }
+}
+
+function searchTeachers() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const filteredTeachers = teachers.filter(t => 
+        t.name.toLowerCase().includes(input) || 
+        t.subject.toLowerCase().includes(input)
+    );
+    renderTeachers(filteredTeachers);
+}
+
+function openModal(teacher) {
+    const modal = document.getElementById("modal");
+    document.getElementById("modal-name").innerText = teacher.name;
+    document.getElementById("modal-subject").innerText = teacher.subject;
+    document.getElementById("modal-phone").innerText = teacher.phone;
+    document.getElementById("modal-photo").src = teacher.photo;
+    modal.style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+}
+
+// Load Dark Mode from Local Storage on Page Load
+document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem('theme') === 'dark') {
+        toggleDarkMode();
+    }
+    renderTeachers(teachers);
+
+    document.getElementById("subjectFilter").addEventListener("change", filterTeachers);
+    document.getElementById("searchInput").addEventListener("input", searchTeachers);
+});
+</script>
+</body>
+</html>

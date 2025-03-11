@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teacher Profiles</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Teacher Profiles</h1>
+    </header>
+
+    <main id="teacher-container">
+        <!-- Teachers will be dynamically added here -->
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+/* General body and font styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #6200ea;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Main container */
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+/* Teacher Card */
+.teacher-card {
+    background: #fff;
+    padding: 15px;
+    margin: 15px;
+    width: 250px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    text-align: center;
+    transition: 0.3s;
+    overflow: hidden;
+}
+
+/* Hover effect */
+.teacher-card:hover {
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+/* Teacher Photo */
+.teacher-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+/* Text styles */
+.teacher-card h3 {
+    margin: 10px 0;
+    color: #333;
+}
+
+.teacher-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+// Array containing the details of 40 teachers
+const teachers = [
+    { name: "Alice Johnson", phone: "123-456-7890", subject: "Mathematics", photo: "images/alice.jpg" },
+    { name: "Bob Smith", phone: "234-567-8901", subject: "Science", photo: "images/bob.jpg" },
+    { name: "Charlie Brown", phone: "345-678-9012", subject: "History", photo: "images/charlie.jpg" },
+    { name: "David Harris", phone: "456-789-0123", subject: "English", photo: "images/david.jpg" },
+    { name: "Ella White", phone: "567-890-1234", subject: "Art", photo: "images/ella.jpg" },
+    { name: "Frank Green", phone: "678-901-2345", subject: "Geography", photo: "images/frank.jpg" },
+    { name: "Grace Lee", phone: "789-012-3456", subject: "Physics", photo: "images/grace.jpg" },
+    { name: "Hannah Parker", phone: "890-123-4567", subject: "Chemistry", photo: "images/hannah.jpg" },
+    { name: "Isaac Moore", phone: "901-234-5678", subject: "Biology", photo: "images/isaac.jpg" },
+    { name: "Jackie White", phone: "012-345-6789", subject: "Computer Science", photo: "images/jackie.jpg" },
+    // Add more teachers as needed (up to 40)
+];
+
+function renderTeachers() {
+    const container = document.getElementById("teacher-container");
+
+    teachers.forEach(teacher => {
+        const card = document.createElement("div");
+        card.className = "teacher-card";
+
+        card.innerHTML = `
+            <img src="${teacher.photo}" alt="${teacher.name}">
+            <h3>${teacher.name}</h3>
+            <p><strong>Subject:</strong> ${teacher.subject}</p>
+            <p><strong>Phone:</strong> ${teacher.phone}</p>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+// Call the function to render teachers when the page loads
+document.addEventListener("DOMContentLoaded", renderTeachers);

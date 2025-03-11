@@ -1,0 +1,20 @@
+{
+    "liveServer.settings.port": 5501,
+    "wolf.disableHotModeWarning": true,
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "student",
+            "database": "student_results",
+            "username": "root",
+            "askForPassword": true
+        }
+    ]
+}

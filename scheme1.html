@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Scheme of Work</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>School Scheme of Work</h1>
+    </header>
+    <main>
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search for a class..." />
+        </div>
+        <div class="filter-container">
+            <button class="filter-btn" data-category="all">All</button>
+            <button class="filter-btn" data-category="primary">Primary</button>
+            <button class="filter-btn" data-category="secondary">Secondary</button>
+        </div>
+        <div id="scheme-list" class="scheme-list">
+            <!-- Dynamically populated -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 School Management System</p>
+    </footer>
+ <style>
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #0056b3;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+footer {
+    background-color: #0056b3;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+/* Search and Filter */
+.search-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#search-bar {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.filter-btn {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.filter-btn:hover {
+    background-color: #003f8a;
+}
+
+/* Scheme Items */
+.scheme-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.scheme-item {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    flex: 1 1 calc(33.333% - 20px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.scheme-item:hover {
+    transform: scale(1.05);
+}
+
+.scheme-item h3 {
+    margin: 10px 0;
+}
+
+.download-icon {
+    width: 24px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+a {
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+</style>
+<script>
+// List of schemes with categories
+const schemes = [
+    { class: "Class 1", file: "schemes/class1.pdf", category: "primary" },
+    { class: "Class 2", file: "schemes/class2.pdf", category: "primary" },
+    { class: "Class 3", file: "schemes/class3.pdf", category: "primary" },
+    { class: "Class 4", file: "schemes/class4.pdf", category: "primary" },
+    { class: "Class 5", file: "schemes/class5.pdf", category: "primary" },
+    { class: "Class 6", file: "schemes/class6.pdf", category: "secondary" },
+    { class: "Class 7", file: "schemes/class7.pdf", category: "secondary" },
+];
+
+// Populate schemes dynamically
+const schemeList = document.getElementById("scheme-list");
+const searchBar = document.getElementById("search-bar");
+
+function displaySchemes(filter = "all", searchQuery = "") {
+    schemeList.innerHTML = ""; // Clear the list
+    schemes
+        .filter(
+            (scheme) =>
+                (filter === "all" || scheme.category === filter) &&
+                scheme.class.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        .forEach((scheme) => {
+            const div = document.createElement("div");
+            div.classList.add("scheme-item");
+
+            div.innerHTML = `
+                <h3>${scheme.class}</h3>
+                <a href="${scheme.file}" download>
+                    <img src="download-icon.png" alt="Download Icon" class="download-icon">
+                    Download Scheme
+                </a>
+            `;
+            schemeList.appendChild(div);
+        });
+}
+
+// Event listeners for search and filters
+document.querySelectorAll(".filter-btn").forEach((btn) =>
+    btn.addEventListener("click", () => {
+        displaySchemes(btn.dataset.category, searchBar.value);
+    })
+);
+
+searchBar.addEventListener("input", () => {
+    const selectedFilter = document.querySelector(".filter-btn.active")?.dataset.category || "all";
+    displaySchemes(selectedFilter, searchBar.value);
+});
+
+// Initial display
+displaySchemes();
+</script>
+</body>
+</html>

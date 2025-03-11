@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Enhanced Teacher Info</title>
+    <style>
+      /* General Styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .header {
+        text-align: center;
+        padding: 20px;
+      }
+
+      .dark-mode {
+        background-color: #333;
+        color: #f9f9f9;
+      }
+
+      #dark-mode-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 15px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1000;
+        transition: background 0.3s;
+      }
+
+      #dark-mode-toggle:hover {
+        background: #0056b3;
+      }
+
+      #search-bar {
+        width: 90%;
+        max-width: 500px;
+        margin: 20px auto;
+        display: block;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        transition: border 0.3s;
+      }
+
+      #search-bar:focus {
+        border: 1px solid #007bff;
+      }
+
+      .teacher-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .teacher-box {
+        width: 200px;
+        text-align: center;
+        background: white;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .teacher-box img {
+        width: 100%;
+        height: 150px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      .teacher-box h3 {
+        margin: 10px 0;
+      }
+
+      .teacher-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .highlight {
+        background: yellow;
+      }
+
+      /* Modal Styles */
+      #modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      #modal-content {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      #modal img {
+        width: 150px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+      }
+
+      #close-modal {
+        background: red;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #close-modal:hover {
+        background: darkred;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .teacher-box {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Our Teachers</h1>
+      <p>Click on a teacher's image to learn more about them.</p>
+    </div>
+    <button id="dark-mode-toggle">Toggle Dark Mode</button>
+    <input
+      type="text"
+      id="search-bar"
+      placeholder="Search teacher by name..."
+    />
+    <div class="teacher-container">
+      <div class="teacher-box" data-name="Smirth Jon">
+        <h3>Smirth Jon</h3>
+        <img
+          src="image/t1.jpg"
+          alt="Smirth Jon"
+          onclick="showModal('Smirth Jon', 'Mathematics and Physics Expert', 'Email: smirth.jon@example.com', 'Phone: +123456789')"
+        />
+      </div>
+      <div class="teacher-box" data-name="Jean Doe">
+        <h3>Jean Doe</h3>
+        <img
+          src="image/t2.jpg"
+          alt="Jean Doe"
+          onclick="showModal('Jean Doe', 'Biology and Chemistry Specialist', 'Email: jean.doe@example.com', 'Phone: +987654321')"
+        />
+      </div>
+      <div class="teacher-box" data-name="Alex Den">
+        <h3>Alex Den</h3>
+        <img
+          src="image/t3.jpg"
+          alt="Alex Den"
+          onclick="showModal('Alex Den', 'Computer Science and AI', 'Email: alex.den@example.com', 'Phone: +456789123')"
+        />
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal">
+      <div id="modal-content">
+        <img id="modal-image" src="" alt="Teacher Image" />
+        <h2 id="modal-name"></h2>
+        <p id="modal-details"></p>
+        <p id="modal-contact"></p>
+        <button id="close-modal" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+
+    <script>
+      function showModal(name, details, contact, phone) {
+        document.getElementById("modal-name").innerText = name;
+        document.getElementById("modal-details").innerText = details;
+        document.getElementById("modal-contact").innerText = contact;
+        document.getElementById("modal").style.display = "flex";
+      }
+
+      function closeModal() {
+        document.getElementById("modal").style.display = "none";
+      }
+
+      // Search Functionality
+      document.getElementById("search-bar").addEventListener("input", function () {
+        const query = this.value.toLowerCase();
+        const teacherBoxes = document.querySelectorAll(".teacher-box");
+
+        teacherBoxes.forEach((box) => {
+          const name = box.getAttribute("data-name").toLowerCase();
+          const text = box.querySelector("h1");
+          if (name.includes(query)) {
+            box.style.display = "block";
+            text.innerHTML = name.replace(
+              new RegExp(query, "gi"),
+              (match) => `<span class="highlight">${match}</span>`
+            );
+          } else {
+            box.style.display = "none";
+          }
+        });
+      });
+
+      // Dark Mode Toggle
+      const darkModeToggle = document.getElementById("dark-mode-toggle");
+      darkModeToggle.addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+      });
+    </script>
+  </body>
+</html>

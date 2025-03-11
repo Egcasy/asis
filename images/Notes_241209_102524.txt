@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Auto-Search Teacher Profiles</title>
+    <style>
+      /* General Styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .header {
+        text-align: center;
+        padding: 20px;
+      }
+
+      #search-bar {
+        width: 90%;
+        max-width: 500px;
+        margin: 20px auto;
+        display: block;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        transition: border 0.3s;
+      }
+
+      #search-bar:focus {
+        border: 1px solid #007bff;
+      }
+
+      .teacher-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .teacher-box {
+        width: 200px;
+        text-align: center;
+        background: white;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .teacher-box img {
+        width: 100%;
+        height: 150px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      .teacher-box:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-content {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        animation: slideIn 0.5s ease-out;
+      }
+
+      .modal img {
+        width: 150px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        border: 3px solid #007bff;
+      }
+
+      .close-modal {
+        background: red;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      .close-modal:hover {
+        background: darkred;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Our Teachers</h1>
+      <p>Search for a teacher by typing their name in the search bar.</p>
+    </div>
+    <input
+      type="text"
+      id="search-bar"
+      placeholder="Search teacher by name..."
+    />
+    <div class="teacher-container">
+      <!-- Teacher 1 -->
+      <div class="teacher-box">
+        <h3>Smirth Jon</h3>
+        <img
+          src="image/t1.jpg"
+          alt="Smirth Jon"
+          onclick="openModal('modal-smirth')"
+        />
+      </div>
+      <div id="modal-smirth" class="modal">
+        <div class="modal-content">
+          <img src="image/t1.jpg" alt="Smirth Jon" />
+          <h2>Smirth Jon</h2>
+          <p>Expert in Mathematics and Physics.</p>
+          <button class="close-modal" onclick="closeModal('modal-smirth')">
+            Close
+          </button>
+        </div>
+      </div>
+
+      <!-- Teacher 2 -->
+      <div class="teacher-box">
+        <h3>Jean Doe</h3>
+        <img
+          src="image/t2.jpg"
+          alt="Jean Doe"
+          onclick="openModal('modal-jean')"
+        />
+      </div>
+      <div id="modal-jean" class="modal">
+        <div class="modal-content">
+          <img src="image/t2.jpg" alt="Jean Doe" />
+          <h2>Jean Doe</h2>
+          <p>Specialist in Biology and Chemistry.</p>
+          <button class="close-modal" onclick="closeModal('modal-jean')">
+            Close
+          </button>
+        </div>
+      </div>
+
+      <!-- Teacher 3 -->
+      <div class="teacher-box">
+        <h3>Alex Den</h3>
+        <img
+          src="image/t3.jpg"
+          alt="Alex Den"
+          onclick="openModal('modal-alex')"
+        />
+      </div>
+      <div id="modal-alex" class="modal">
+        <div class="modal-content">
+          <img src="image/t3.jpg" alt="Alex Den" />
+          <h2>Alex Den</h2>
+          <p>Focus on Computer Science and AI.</p>
+          <button class="close-modal" onclick="closeModal('modal-alex')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openModal(modalId) {
+        document.getElementById(modalId).classList.add("active");
+      }
+
+      function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove("active");
+      }
+
+      // Search Functionality
+      const searchBar = document.getElementById("search-bar");
+      searchBar.addEventListener("input", function () {
+        const query = searchBar.value.toLowerCase();
+        const teachers = [
+          { name: "Smirth Jon", modalId: "modal-smirth" },
+          { name: "Jean Doe", modalId: "modal-jean" },
+          { name: "Alex Den", modalId: "modal-alex" },
+        ];
+
+        teachers.forEach((teacher) => {
+          closeModal(teacher.modalId); // Close all modals
+        });
+
+        const matchedTeacher = teachers.find((teacher) =>
+          teacher.name.toLowerCase().includes(query)
+        );
+
+        if (matchedTeacher) {
+          openModal(matchedTeacher.modalId);
+        }
+      });
+    </script>
+  </body>
+</html>

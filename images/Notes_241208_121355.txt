@@ -1,0 +1,109 @@
+# Teacher Website
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Directory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Teacher Directory</h1>
+    </header>
+    <main id="teacher-list">
+        <!-- Teacher cards will be generated here -->
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.teacher-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.teacher-card img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+}
+
+.teacher-details {
+    flex-grow: 1;
+}
+
+.teacher-details h2 {
+    margin: 0;
+}
+
+.teacher-details p {
+    margin: 5px 0;
+}
+// script.js
+
+const teachers = [
+    { name: "Alice Johnson", phone: "123-456-7890", subject: "Mathematics", photo: "alice.jpg" },
+    { name: "Bob Smith", phone: "234-567-8901", subject: "Science", photo: "bob.jpg" },
+    { name: "Catherine Brown", phone: "345-678-9012", subject: "English", photo: "catherine.jpg" },
+    { name: "David Wilson", phone: "456-789-0123", subject: "History", photo: "david.jpg" },
+    { name: "Eva Green", phone: "567-890-1234", subject: "Art", photo: "eva.jpg" },
+    { name: "Frank White", phone: "678-901-2345", subject: "Physical Education", photo: "frank.jpg" },
+    { name: "Grace Lee", phone: "789-012-3456", subject: "Biology", photo: "grace.jpg" },
+    { name: "Henry Adams", phone: "890-123-4567", subject: "Chemistry", photo: "henry.jpg" },
+    { name: "Isabella Scott", phone: "901-234-5678", subject: "Music", photo: "isabella.jpg" },
+    { name: "Jack Taylor", phone: "012-345-6789", subject: "Computer Science", photo: "jack.jpg" },
+    { name: "Katherine Martinez", phone: "123-456-7891", subject: "Geography", photo: "katherine.jpg" },
+    { name: "Liam Thomas", phone: "234-567-8902", subject: "Physics", photo: "liam.jpg" },
+    { name: "Mia Garcia", phone: "345-678-9013", subject: "Drama", photo: "mia.jpg" },
+    { name: "Noah Rodriguez", phone: "456-789-0124", subject: "Economics", photo: "noah.jpg" },
+    { name: "Olivia Hernandez", phone: "567-890-1235", subject: "Health", photo: "olivia.jpg" },
+    { name: "Paul King", phone: "678-901-2346", subject: "Statistics", photo: "paul.jpg" },
+    { name: "Quinn Lee", phone: "789-012-3457", subject: "Philosophy", photo: "quinn.jpg" },
+    { name: "Rachel Young", phone: "890-123-4568", subject: "Sociology", photo: "rachel.jpg" },
+    { name: "Samuel Hall", phone: "901-234-5679", subject: "Psychology", photo: "samuel.jpg" },
+    { name: "Tina Allen", phone: "012-345-6780", subject: "Literature", photo: "tina.jpg" },
+    { name: "Ursula Wright", phone: "123-456-7892", subject: "Civics", photo: "ursula.jpg" },
+    { name: "Victor Scott", phone: "234-567-8903", subject: "Environmental Science", photo: "victor.jpg" },
+    { name: "Wendy Green", phone: "345-678-9014", subject: "Astronomy", photo: "wendy.jpg" },
+    { name: "Xander Lewis", phone: "456-789-0125", subject: "Statistics", photo: "xander.jpg" },
+    { name: "Yara Martinez", phone: "567-890-1236", subject: "Creative Writing", photo: "yara.jpg" },
+    { name: "Zachary Clark", phone: "678-901-2347", subject: "Robotics", photo: "zachary.jpg" },
+    // Add more teachers as needed
+];
+
+const teacherList = document.getElementById('teacher-list');
+
+teachers.forEach(teacher => {
+    const card = document.createElement('div');
+    card.className = 'teacher-card';
+    card.innerHTML = `
+        <img src="${teacher.photo}" alt="${teacher.name}">
+        <div class="teacher-details">
+            <h2>${teacher.name}</h2>
+            <p>Phone: ${teacher.phone}</p>
+            <p>Subject: ${teacher.subject}</p>
+        </div>
+    `;
+    teacherList.appendChild(card);
+});

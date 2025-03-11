@@ -1,0 +1,14 @@
+document.getElementById('submitBtn').addEventListener('click', function () {
+      const form = document.getElementById('studentForm');
+a
+      // Create a FormData object to capture form data
+      const formData = new FormData(form);
+
+      // Iterate through the form data for debugging (optional)
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+
+      // Simulate form submission (can be replaced with an API call)
+      alert('Form submitted successfully!');
+    });

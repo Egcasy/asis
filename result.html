@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="Ptr.jpg">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>ASIS result</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!-- font awesome style -->
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+  <div class="hero_area">
+  
+    <header class="header_section">
+      <div class="header_top">
+        <div class="container-fluid">
+          <div class="contact_nav">
+            <a href="">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>
+                Call : +2347030132106
+              </span>
+            </a>
+            <a href="">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span>
+                Email : ikebuwa434@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="header_bottom">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container ">
+            <a class="navbar-brand" href="index.html">
+              <span>
+                ASIS
+              </span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class=""> </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html"> About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="service.html">Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">ask anything</a>
+                  </li>
+              <li class="navbar-item"></li>
+                  <a class="nav-link" href="teacher.html">teacher</a>
+                  </li>
+                  <li class="navbar-brand"></li>
+                  <a class="nav-link" href="sign.html">sign up</a>
+                  </li>
+                  <li class="navbar-brand"></li>
+                  <a class="nav-link" href="register.html">register</a>
+                  </li>
+                  <li class="navbar-brand"></li>
+                  <a class="nav-link" href="result.html">result</a>
+                  </li>
+                  <li class="navbar-brand"></li>
+                  <a
+                   class="nav-link" href="pics.html">picture</a>
+                  </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+  </head>
+<body>
+    <div class="container">
+        <h1>Student Result Portal</h1>
+        <input type="text" id="studentId" placeholder="Enter Student ID" required>
+        <button id="submitBtn">Get Result</button>
+        <p id="message"></p>
+        <div id="resultContainer" style="display: none;">
+            <h2>Result:</h2>
+            <p id="resultText"></p>
+            <iframe src="result_123.pdf" height="600" width="1000"></iframe>
+            <button id="downloadBtn" style="display: none;">Download Result</button>
+          </div>
+    </div>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #6fed0e;
+    display: center;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 10px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#message {
+    margin-top: 20px;
+    color: green;
+}
+
+#resultContainer {
+    margin-top: 20px;
+}
+</style>
+<script>
+// Mapping of student IDs to document URLs and results
+const studentDocuments = {
+    '123': {
+        url: 'result_123.pdf',
+        result: 'see your result'
+    },
+    '456': {
+        url: 'result/result_456.docx',
+        result: 'Student ID: 456 - Math: B, Science: A, English: B'
+    },
+    '789': {
+        url: 'result/result_789.docx',
+        result: 'Student ID: 789 - Math: C, Science: B, English: A'
+    },
+    // Add more student IDs, document paths, and results here
+};
+
+document.getElementById('submitBtn').addEventListener('click', function() {
+    const studentId = document.getElementById('studentId').value;
+    const messageElement = document.getElementById('message');
+    const resultContainer = document.getElementById('resultContainer');
+    const resultText = document.getElementById('resultText');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    // Clear previous messages and results
+    messageElement.textContent = '';
+    resultContainer.style.display = 'none';
+    downloadBtn.style.display = 'none';
+
+    if (studentId) {
+        // Check if the student ID exists in the mapping
+        if (studentDocuments[studentId]) {
+            const studentData = studentDocuments[studentId];
+            messageElement.textContent = `Fetching result for Student ID: ${studentId}...`;
+
+            // Show the result and the download button
+            resultText.textContent = studentData.result;
+            resultContainer.style.display = 'block';
+            downloadBtn.style.display = 'inline-block';
+
+            // Set the download URL for the button
+            downloadBtn.onclick = function() {
+                const link = document.createElement('a');
+                link.href = studentData.url; // Get the document URL
+                link.download = `result_${studentId}.pdf`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                messageElement.textContent = 'Result downloaded successfully!';
+            };
+        } else {
+            messageElement.textContent = 'No result found for this Student ID.';
+            messageElement.style.color = 'red';
+        }}
+    });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,108 @@
+// Get the container where the form will be rendered
+const app = document.getElementById('app');
+
+// Create the form
+const form = document.createElement('form');
+form.setAttribute('action', 'https://example.com/submit'); // Replace with your URL
+form.setAttribute('method', 'POST');
+
+// Function to create a labeled input field
+function createInput(labelText, type, name, required = true) {
+  const label = document.createElement('label');
+  label.textContent = labelText;
+  
+  const input = document.createElement('input');
+  input.setAttribute('type', type);
+  input.setAttribute('name', name);
+  if (required) input.setAttribute('required', true);
+
+  form.appendChild(label);
+  form.appendChild(input);
+  form.appendChild(document.createElement('br'));
+}
+
+// Create Username field
+createInput('Username:', 'text', 'username');
+
+// Create Email field
+createInput('Email:', 'email', 'email');
+
+// Create Phone Number field
+createInput('Phone Number:', 'tel', 'phone');
+
+// Create Date field
+createInput('Date:', 'date', 'date');
+
+// Create File Upload field
+createInput('Upload File:', 'file', 'file', false);
+
+// Create Checkbox
+const checkboxLabel = document.createElement('label');
+checkboxLabel.textContent = 'Agree to Terms:';
+const checkbox = document.createElement('input');
+checkbox.setAttribute('type', 'checkbox');
+checkbox.setAttribute('name', 'terms');
+checkbox.setAttribute('required', true);
+form.appendChild(checkboxLabel);
+form.appendChild(checkbox);
+form.appendChild(document.createElement('br'));
+
+// Create Dropdown (Options)
+const dropdownLabel = document.createElement('label');
+dropdownLabel.textContent = 'Select Option:';
+form.appendChild(dropdownLabel);
+
+const select = document.createElement('select');
+select.setAttribute('name', 'options');
+select.setAttribute('required', true);
+
+const option1 = document.createElement('option');
+option1.setAttribute('value', 'option1');
+option1.textContent = 'Option 1';
+select.appendChild(option1);
+
+const option2 = document.createElement('option');
+option2.setAttribute('value', 'option2');
+option2.textContent = 'Option 2';
+select.appendChild(option2);
+
+const option3 = document.createElement('option');
+option3.setAttribute('value', 'option3');
+option3.textContent = 'Option 3';
+select.appendChild(option3);
+
+form.appendChild(select);
+form.appendChild(document.createElement('br'));
+
+// Add Submit Button
+const submitButton = document.createElement('button');
+submitButton.textContent = 'Submit';
+submitButton.setAttribute('type', 'button');
+form.appendChild(submitButton);
+
+// Append the form to the DOM
+app.appendChild(form);
+
+// Add event listener for submission
+submitButton.addEventListener('click', () => {
+  const termsAccepted = checkbox.checked;
+  if (!termsAccepted) {
+    alert('Please agree to the terms.');
+    return;
+  }
+
+  // Simple validation to ensure all required fields are filled
+  const inputs = form.querySelectorAll('input[required], select[required]');
+  let allValid = true;
+
+  inputs.forEach(input => {
+    if (!input.value) {
+      allValid = false;
+      alert(`Please fill out the ${input.name} field.`);
+    }
+  });
+
+  if (allValid) {
+    form.submit(); // Programmatically submit the form
+  }
+});

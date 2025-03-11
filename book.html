@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Book Store</h1>
+        <input type="text" id="searchBar" placeholder="Search by title or author..." onkeyup="searchBooks()">
+    </header>
+    <main>
+        <div class="book-list" id="bookList">
+            <!-- Book Items -->
+            <div class="book" data-title="Corporate Design" data-author="John Doe">
+                <img src="Ptr.jpg" alt="Corporate Design Cover">
+                <h2>Corporate Design</h2>
+                <p class="author">by John Doe</p>
+                <p class="description">A guide to modern corporate design principles.</p>
+                <p class="price">$20</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Corporate Design', 20)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+
+            <div class="book" data-title="Modern Design" data-author="Jane Smith">
+                <img src="r1.png" alt="Modern Design Cover">
+                <h2>Modern Design</h2>
+                <p class="author">by Jane Smith</p>
+                <p class="description">Exploring contemporary design in various industries.</p>
+                <p class="price">$25</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button onclick="addToCart('Modern Design', 25)">Add to Cart</button>
+            </div>
+            
+        </div>
+    </main>
+
+    <aside class="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cartItems"></ul>
+        <p id="totalPrice">Total: $0</p>
+        <button onclick="checkout()">Checkout</button>
+    </aside>
+
+    <script src="script.js"></script>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f4f4f9;
+}
+
+header {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background-color: #0073e6;
+    color: white;
+}
+
+h1 {
+    margin: 0;
+}
+
+#searchBar {
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    margin-top: 15px;
+}
+
+main {
+    width: 70%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.book {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.book:hover {
+    transform: scale(1.05);
+}
+
+.book img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.author, .description, .price, .rating {
+    margin: 5px 0;
+}
+
+button {
+    background-color: #0073e6;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+.cart {
+    width: 30%;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+
+.cart h2, .cart p {
+    text-align: center;
+}
+
+.cart ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart ul li {
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+}
+</style>
+<script>
+// Sample books array for demo purposes (could be expanded for more books).
+const books = [
+    { title: "Corporate Design", author: "John Doe", price: 20 },
+    { title: "Modern Design", author: "Jane Smith", price: 25 }
+];
+
+let cart = [];
+
+function searchBooks() {
+    const searchInput = document.getElementById("searchBar").value.toLowerCase();
+    const books = document.querySelectorAll(".book");
+    
+    books.forEach(book => {
+        const title = book.getAttribute("data-title").toLowerCase();
+        const author = book.getAttribute("data-author").toLowerCase();
+        
+        if (title.includes(searchInput) || author.includes(searchInput)) {
+            book.style.display = "block";
+        } else {
+            book.style.display = "none";
+        }
+    });
+}
+
+function addToCart(title, price) {
+    const cartItem = cart.find(item => item.title === title);
+    
+    if (cartItem) {
+        cartItem.quantity++;
+    } else {
+        cart.push({ title, price, quantity: 1 });
+    }
+    displayCart();
+}
+
+function displayCart() {
+    const cartItems = document.getElementById("cartItems");
+    const totalPriceElement = document.getElementById("totalPrice");
+    
+    cartItems.innerHTML = "";
+    let totalPrice = 0;
+    
+    cart.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.title} - $${item.price} x ${item.quantity}`;
+        cartItems.appendChild(li);
+        totalPrice += item.price * item.quantity;
+    });
+    
+    totalPriceElement.textContent = `Total: $${totalPrice}`;
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+    alert("Thank you for your purchase!");
+    cart = [];
+    displayCart();
+}
+</script>
+</body>
+</html>
